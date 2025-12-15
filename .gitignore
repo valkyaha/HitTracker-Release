@@ -1,5 +1,3 @@
-# Binary files - these should be uploaded as GitHub release assets
-*.exe
-*.msi
-*.zip
-portable/
+# Only ignore temporary/build files
+*.tmp
+*.log
