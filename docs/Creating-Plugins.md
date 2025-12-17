@@ -57,11 +57,10 @@ Choose an algorithm based on how your game stores boss defeat flags:
 
 | Algorithm | Games | Description |
 |-----------|-------|-------------|
-| `ds3` | DS3, Sekiro | Category decomposition with div_10m/div_1k/mod_1000 |
-| `eldenring` | Elden Ring | Binary tree traversal for category lookup |
-| `ds1` | DS1 Remastered | Offset table lookup with group/area decomposition |
-| `ds2` | DS2 SOTFS | Kill counter array (flag_id = array offset) |
-| `sekiro` | Sekiro | Similar to DS3 but without category fallback |
+| `category_decomposition` | DS3, Sekiro | Category-based flag storage with div_10m/div_1k/mod_1000 |
+| `binary_tree` | Elden Ring, AC6 | Binary tree traversal for flag lookup |
+| `offset_table` | DS1 Remastered | Offset table with group/area decomposition |
+| `kill_counter` | DS2 SOTFS | Kill counter array (flag_id = array offset) |
 
 ## Autosplitter Configuration
 
@@ -72,7 +71,7 @@ If your game uses the same flag structure as an existing game:
 ```toml
 [autosplitter]
 enabled = true
-algorithm = "ds3"    # Use Dark Souls 3 algorithm
+algorithm = "category_decomposition"    # Use DS3/Sekiro style algorithm
 ```
 
 ### Custom Memory Patterns
@@ -82,7 +81,7 @@ If you need to specify custom patterns:
 ```toml
 [autosplitter]
 enabled = true
-algorithm = "ds3"
+algorithm = "category_decomposition"
 
 # Memory patterns for finding pointers
 [[autosplitter.patterns]]
@@ -188,17 +187,19 @@ names = ["ExampleGame.exe"]
 
 [autosplitter]
 enabled = true
-algorithm = "ds3"
+algorithm = "category_decomposition"
+
+[autosplitter.category_config]
+primary_pattern = "sprj_event_flag_man"
+base_offset = 0x218
+entry_size = 0x18
+category_count = 1
 
 [[autosplitter.patterns]]
 name = "sprj_event_flag_man"
 pattern = "48 c7 05 ? ? ? ? 00 00 00 00 48 8b 7c 24 38"
 rip_offset = 3
 instruction_len = 11
-
-[[autosplitter.pointer_chains]]
-name = "event_flags"
-offsets = [0x218]
 
 # Main game bosses
 [[bosses]]
