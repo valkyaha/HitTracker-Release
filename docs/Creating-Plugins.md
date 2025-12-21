@@ -1,6 +1,6 @@
 # Creating Plugins
 
-This guide explains how to create game plugins for VNoHitTracker.
+This guide explains how to create game plugins for NYA Core.
 
 ## Plugin Structure
 
@@ -36,7 +36,7 @@ names = ["YourGame.exe", "yourgame.exe"]  # Possible executable names
 # Autosplitter configuration
 [autosplitter]
 enabled = true
-algorithm = "ds3"                   # Algorithm to use (see below)
+algorithm = "category_decomposition"   # Algorithm to use (see below)
 
 # Boss definitions
 [[bosses]]
@@ -268,7 +268,7 @@ boss_ids = ["tutorial_boss", "first_lord", "optional_boss", "final_boss", "dlc_b
 ## Testing Your Plugin
 
 1. Place your plugin folder in the `plugins/` directory
-2. Restart VNoHitTracker
+2. Restart NYA Core
 3. Check the logs for any parsing errors
 4. Your game should appear in the game selection dropdown
 5. Test the autosplitter by defeating a boss

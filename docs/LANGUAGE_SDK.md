@@ -1,6 +1,6 @@
-# VNoHitTracker Language SDK
+# NYA Core Language SDK
 
-Create custom language files for VNoHitTracker by following this guide.
+Create custom language files for NYA Core by following this guide.
 
 ## File Format
 
@@ -28,7 +28,7 @@ Language files are JSON files with the following structure:
 1. Create a new JSON file in the `languages` folder (e.g., `fr.json` for French)
 2. Update the `info` section with your language details
 3. Translate all strings in the `strings` section
-4. Restart VNoHitTracker to see your language in Settings > Language
+4. Restart NYA Core to see your language in Settings > Language
 
 ## String Keys Reference
 
@@ -61,6 +61,13 @@ Language files are JSON files with the following structure:
 | `status.completed` | COMPLETED | Completed status |
 | `status.hit` | HIT | Hit status |
 
+### Timer
+| Key | English | Description |
+|-----|---------|-------------|
+| `timer.start` | Start | Start timer button |
+| `timer.stop` | Stop | Stop timer button |
+| `timer.reset` | Reset | Reset timer button |
+
 ### Multi-Run
 | Key | English | Description |
 |-----|---------|-------------|
@@ -83,11 +90,25 @@ Language files are JSON files with the following structure:
 | `settings.export` | Export JSON | Export button |
 | `settings.import` | Import JSON | Import button |
 
+### Dialogs
+| Key | English | Description |
+|-----|---------|-------------|
+| `dialogs.resetRun` | Reset Run | Reset dialog title |
+| `dialogs.resetRunConfirm` | Are you sure you want to reset the run? | Reset confirmation |
+| `dialogs.saveAsPB` | Save as PB | Save PB dialog title |
+| `dialogs.saveAsPBConfirm` | Save this run as your personal best? | Save PB confirmation |
+| `dialogs.clearStats` | Clear Statistics | Clear stats dialog title |
+| `dialogs.clearStatsConfirm` | Are you sure you want to clear all statistics? | Clear stats confirmation |
+| `dialogs.factoryReset` | Factory Reset | Factory reset dialog title |
+| `dialogs.factoryResetConfirm` | This will delete all data. Continue? | Factory reset confirmation |
+
 ### Common
 | Key | English | Description |
 |-----|---------|-------------|
 | `common.save` | Save | Save button |
 | `common.cancel` | Cancel | Cancel button |
+| `common.confirm` | Confirm | Confirm button |
+| `common.ok` | OK | OK button |
 | `common.delete` | Delete | Delete button |
 | `common.yes` | Yes | Yes option |
 | `common.no` | No | No option |
@@ -104,7 +125,7 @@ Language files are JSON files with the following structure:
         "id": "es",
         "name": "Spanish",
         "native_name": "Español",
-        "author": "VNoHitTracker",
+        "author": "NYA Core",
         "version": "1.0.0"
     },
     "strings": {
@@ -127,6 +148,8 @@ Language files are JSON files with the following structure:
 
         "common.save": "Guardar",
         "common.cancel": "Cancelar",
+        "common.confirm": "Confirmar",
+        "common.ok": "Aceptar",
         "common.delete": "Eliminar"
     }
 }

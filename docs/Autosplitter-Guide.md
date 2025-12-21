@@ -1,6 +1,6 @@
 # Autosplitter Guide
 
-This guide explains how the VNoHitTracker autosplitter works and how to configure it for new games.
+This guide explains how the NYA Core autosplitter works and how to configure it for new games.
 
 ## Overview
 
@@ -117,7 +117,7 @@ Check existing autosplitters and modding communities:
 ```toml
 [autosplitter]
 enabled = true
-algorithm = "ds3"
+algorithm = "category_decomposition"
 
 [[autosplitter.patterns]]
 name = "sprj_event_flag_man"
@@ -137,7 +137,7 @@ instruction_len = 7
 ```toml
 [autosplitter]
 enabled = true
-algorithm = "eldenring"
+algorithm = "binary_tree"
 
 [[autosplitter.patterns]]
 name = "virtual_memory_flag"
@@ -151,7 +151,7 @@ instruction_len = 12
 ```toml
 [autosplitter]
 enabled = true
-algorithm = "ds2"
+algorithm = "kill_counter"
 
 [[autosplitter.patterns]]
 name = "game_manager_imp"
@@ -165,7 +165,7 @@ instruction_len = 7
 ### Autosplitter Not Connecting
 
 1. Check process names match exactly (case-insensitive)
-2. Run VNoHitTracker as administrator
+2. Run NYA Core as administrator
 3. Check for anti-cheat interference
 4. Verify patterns are correct for your game version
 

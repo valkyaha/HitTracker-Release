@@ -1,6 +1,6 @@
 # Flag Algorithms
 
-This document explains the different memory reading algorithms used by VNoHitTracker for each game.
+This document explains the different memory reading algorithms used by NYA Core for each game.
 
 ## Overview
 
@@ -257,11 +257,10 @@ count > 0  // Boss defeated if killed at least once
 
 | Your Game's Structure | Use Algorithm |
 |----------------------|---------------|
-| Category decomposition (div_10m, div_1k) | `ds3` |
-| Binary tree categories | `eldenring` |
-| Group/area/section tables | `ds1` |
-| Kill counter array | `ds2` |
-| Same as Sekiro (no category fallback) | `sekiro` |
+| Category decomposition (div_10m, div_1k) | `category_decomposition` |
+| Binary tree categories | `binary_tree` |
+| Group/area/section tables | `offset_table` |
+| Kill counter array | `kill_counter` |
 
 ## Implementing a New Algorithm
 

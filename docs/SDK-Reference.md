@@ -1,6 +1,6 @@
 # SDK Reference
 
-VNoHitTracker uses a TOML-based plugin system. Plugins are loaded from the `plugins/` directory next to the executable.
+NYA Core uses a TOML-based plugin system. Plugins are loaded from the `plugins/` directory next to the executable.
 
 ## Plugin Structure
 
@@ -79,7 +79,7 @@ names = ["Game.exe", "Game_Alt.exe"]  # Process names to detect
 
 ## Autosplitter Algorithms
 
-VNoHitTracker supports four flag reading algorithms based on how different games store boss defeat flags:
+NYA Core supports four flag reading algorithms based on how different games store boss defeat flags:
 
 ### 1. Category Decomposition (DS3/Sekiro)
 
@@ -223,6 +223,76 @@ boss_ids = [
 ]
 ```
 
+## Tauri Commands API
+
+### Run Control
+| Command | Description |
+|---------|-------------|
+| `get_state()` | Get current run state |
+| `add_hit()` | Add hit to current split |
+| `undo_hit()` | Undo last hit |
+| `boss_defeated()` | Advance to next split |
+| `undo_split()` | Go back one split |
+| `toggle_timer()` | Start/stop timer |
+| `reset_run()` | Reset current run |
+| `save_run_as_pb()` | Save as personal best |
+
+### Autosplitter
+| Command | Description |
+|---------|-------------|
+| `start_autosplitter(game_id, boss_flags)` | Start with specific flags |
+| `start_autosplitter_autodetect()` | Auto-detect game |
+| `stop_autosplitter()` | Stop autosplitter |
+| `get_autosplitter_state()` | Get current status |
+
+### OBS Integration
+| Command | Description |
+|---------|-------------|
+| `start_obs_server()` | Start HTTP server |
+| `stop_obs_server()` | Stop HTTP server |
+| `get_obs_status()` | Get server status |
+| `update_obs_style(config)` | Update overlay styling |
+
+### Games/Plugins
+| Command | Description |
+|---------|-------------|
+| `get_games()` | Get all available games |
+| `get_plugins()` | Get all loaded plugins |
+| `get_game_bosses(game_id)` | Get bosses for a game |
+| `select_game(game_id, preset_id)` | Select game and preset |
+
+## OBS HTTP API
+
+**Endpoint:** `GET http://localhost:9876/`
+
+**Response:**
+```json
+{
+  "game_name": "Dark Souls III",
+  "preset_name": "All Bosses",
+  "total_hits": 42,
+  "hits_this_split": 3,
+  "timer_running": true,
+  "elapsed_ms": 180000,
+  "elapsed_formatted": "03:00.000",
+  "current_split": 5,
+  "splits_completed": 4,
+  "splits_total": 25,
+  "progress_percent": 20.0,
+  "pb_hits": 38,
+  "splits": [
+    {
+      "name": "Iudex Gundyr",
+      "hits": 3,
+      "completed": true,
+      "is_current": false,
+      "pb_hits": 2
+    }
+  ],
+  "style": { ... }
+}
+```
+
 ## Complete Example
 
 See the built-in plugins for complete examples:
@@ -242,6 +312,6 @@ Flag IDs for boss defeats can be found using:
 
 1. Create your plugin folder in `plugins/`
 2. Add your `plugin.toml`
-3. Launch VNoHitTracker
+3. Launch NYA Core
 4. Select your game from the Games view
 5. Check the autosplitter status in the Autosplitter view

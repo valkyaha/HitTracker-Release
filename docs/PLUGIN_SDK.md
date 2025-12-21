@@ -1,186 +1,273 @@
-# VNoHitTracker Plugin SDK
+# NYA Core Plugin SDK
 
-Create custom game plugins for VNoHitTracker with optional autosplitter support.
+Create custom game plugins for NYA Core with optional autosplitter support.
 
 ## Overview
 
-The VNoHitTracker Plugin SDK allows you to:
+The NYA Core Plugin SDK allows you to:
 - Add support for new games
 - Define boss lists and presets
 - Implement autosplitter functionality (automatic boss defeat detection)
 
 ## Plugin Structure
 
-Plugins are Rust dynamic libraries (`.dll` on Windows) that implement the `HitCounterPlugin` trait.
+Plugins are TOML configuration files that define game metadata, bosses, presets, and optionally autosplitter patterns.
 
 ### Basic Plugin
 
-```rust
-use hitcounter_sdk::{
-    HitCounterPlugin, PluginInfo, PluginError,
-    BossEntry, PresetInfo, BossDefeatEvent
-};
+```toml
+[plugin]
+id = "mygame"
+name = "My Game"
+short_name = "MG"
+version = "1.0.0"
+author = "Your Name"
+description = "Support for My Game"
 
-pub struct MyGamePlugin {
-    // Plugin state
-}
+[process]
+names = ["MyGame.exe"]
 
-impl HitCounterPlugin for MyGamePlugin {
-    fn info(&self) -> PluginInfo {
-        PluginInfo {
-            id: "mygame".to_string(),
-            name: "My Game".to_string(),
-            short_name: "MG".to_string(),
-            version: "1.0.0".to_string(),
-            author: "Your Name".to_string(),
-            description: "Support for My Game".to_string(),
-            game_image: None,
-            has_autosplitter: false,
-        }
-    }
+# Boss definitions
+[[bosses]]
+id = "boss1"
+name = "First Boss"
+location = "Area 1"
+required = true
+order = 1
 
-    fn get_bosses(&self) -> Vec<BossEntry> {
-        vec![
-            BossEntry::new("boss1", "First Boss", "Area 1", true),
-            BossEntry::new("boss2", "Second Boss", "Area 2", true),
-            BossEntry::new("boss3", "Final Boss", "Final Area", true),
-        ]
-    }
+[[bosses]]
+id = "boss2"
+name = "Second Boss"
+location = "Area 2"
+required = true
+order = 2
 
-    fn get_presets(&self) -> Vec<PresetInfo> {
-        vec![
-            PresetInfo {
-                id: "all-bosses".to_string(),
-                name: "All Bosses".to_string(),
-                description: "All 3 bosses".to_string(),
-                boss_ids: vec![
-                    "boss1".to_string(),
-                    "boss2".to_string(),
-                    "boss3".to_string(),
-                ],
-            },
-        ]
-    }
-}
+[[bosses]]
+id = "boss3"
+name = "Final Boss"
+location = "Final Area"
+required = true
+order = 3
 
-// Required export function
-#[no_mangle]
-pub extern "C" fn create_plugin() -> *mut dyn HitCounterPlugin {
-    Box::into_raw(Box::new(MyGamePlugin {}))
-}
+# Preset definitions
+[[presets]]
+id = "all-bosses"
+name = "All Bosses"
+description = "All 3 bosses"
+boss_ids = ["boss1", "boss2", "boss3"]
 ```
 
-## BossEntry
+## Boss Definition
 
-Represents a boss in the game:
+Each boss entry supports:
 
-```rust
-pub struct BossEntry {
-    pub id: String,           // Unique identifier
-    pub name: String,         // Display name
-    pub location: String,     // In-game location
-    pub is_required: bool,    // Required for any% completion
-    pub is_dlc: bool,         // DLC boss
-    pub aliases: Vec<String>, // Alternative names
-}
-
-// Helper constructors
-BossEntry::new(id, name, location, is_required)
-BossEntry::dlc(id, name, location, dlc_name)
-BossEntry::optional(id, name, location)
-```
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `id` | string | Yes | Unique identifier |
+| `name` | string | Yes | Display name |
+| `location` | string | No | In-game location |
+| `required` | bool | No | Required for any% |
+| `is_dlc` | bool | No | DLC content |
+| `dlc_name` | string | No | DLC name |
+| `flag_id` | u32 | No* | Memory flag ID (*required for autosplitter) |
+| `order` | u32 | No | Sort order |
+| `aliases` | array | No | Alternative names |
 
 ## Autosplitter Support
 
-To add automatic boss defeat detection, implement the autosplitter methods:
+To add automatic boss defeat detection:
 
-```rust
-impl HitCounterPlugin for MyGamePlugin {
-    // ... basic methods ...
+```toml
+[autosplitter]
+enabled = true
+algorithm = "category_decomposition"  # Choose algorithm
 
-    fn has_autosplitter(&self) -> bool {
-        true
-    }
+# Memory patterns for finding pointers
+[[autosplitter.patterns]]
+name = "sprj_event_flag_man"
+pattern = "48 c7 05 ? ? ? ? 00 00 00 00"
+rip_offset = 3
+instruction_len = 11
 
-    fn connect(&mut self) -> Result<(), PluginError> {
-        // Find and attach to game process
-        Ok(())
-    }
-
-    fn disconnect(&mut self) {
-        // Cleanup when disconnecting
-    }
-
-    fn is_connected(&self) -> bool {
-        false
-    }
-
-    fn poll(&mut self) -> Option<BossDefeatEvent> {
-        // Called every frame
-        // Return Some(event) when a boss is defeated
-        None
-    }
-
-    fn get_defeated_bosses(&self) -> Vec<String> {
-        vec![]
-    }
-
-    fn reset(&mut self) {
-        // Reset autosplitter state
-    }
-}
+# Bosses with flag IDs
+[[bosses]]
+id = "first_boss"
+name = "First Boss"
+flag_id = 14000800  # Memory flag for defeat detection
 ```
 
-### Memory Reading
+### Available Algorithms
 
-The SDK provides utilities for reading game memory:
+| Algorithm | Games | Description |
+|-----------|-------|-------------|
+| `category_decomposition` | DS3, Sekiro | Category-based flag storage |
+| `binary_tree` | Elden Ring, AC6 | Binary tree traversal |
+| `offset_table` | DS1 Remastered | Offset table lookup |
+| `kill_counter` | DS2 SOTFS | Kill counter array |
 
-```rust
-use hitcounter_sdk::MemoryReader;
+### Algorithm Configuration
 
-let reader = MemoryReader::attach("game.exe")?;
+#### Category Decomposition
+```toml
+[autosplitter.category_config]
+primary_pattern = "sprj_event_flag_man"
+secondary_pattern = "field_area"
+base_offset = 0x218
+entry_size = 0x18
+category_count = 6
+category_multiplier = 0xa8
+```
 
-// Read a value at an address
-let value: u32 = reader.read(0x12345678)?;
+#### Binary Tree
+```toml
+[autosplitter.tree_config]
+primary_pattern = "virtual_memory_flag"
+divisor_offset = 0x1c
+tree_root_offset = 0x38
+multiplier_offset = 0x20
+base_addr_offset = 0x28
+```
 
-// Read with pointer chain
-let value: u32 = reader.read_pointer_chain(
-    base_address,
-    &[0x10, 0x20, 0x30]
-)?;
+#### Offset Table
+```toml
+[autosplitter.offset_table_config]
+primary_pattern = "event_flags"
+
+[autosplitter.offset_table_config.group_offsets]
+"0" = 0x00000
+"1" = 0x00500
+```
+
+#### Kill Counter
+```toml
+[autosplitter.kill_counter_config]
+primary_pattern = "game_manager_imp"
+chain_offsets = [0xD0, 0x60, 0x8]
+```
+
+## Memory Pattern Format
+
+Patterns use hex bytes with `?` wildcards:
+
+```toml
+[[autosplitter.patterns]]
+name = "my_pattern"
+pattern = "48 8B 0D ? ? ? ? 48 85 C9"
+rip_offset = 3      # Offset to displacement in instruction
+instruction_len = 7  # Total instruction length
+```
+
+### RIP-Relative Resolution
+
+For x64 instructions like `mov rcx, [rip+0x12345678]`:
+
+```
+48 8B 0D 78 56 34 12
+       ^^ rip_offset = 3
+          instruction_len = 7
+
+Final address = instruction_addr + instruction_len + displacement
+```
+
+## Pointer Chains
+
+For traversing pointer structures:
+
+```toml
+[[autosplitter.pointer_chains]]
+name = "player_hp"
+base_pattern = "world_chr_man"
+offsets = [0x80, 0x68, 0x0, 0x3E8]
 ```
 
 ## Plugin Installation
 
-1. Build your plugin as a `.dll`
-2. Place it in the `plugins` folder next to the executable
-3. Restart VNoHitTracker
+1. Create your plugin folder in `plugins/`
+2. Add your `plugin.toml`
+3. Restart NYA Core
 4. Your game will appear in the Games list
 
-## Building Plugins
-
-### Cargo.toml
+## Complete Example
 
 ```toml
-[package]
-name = "mygame-plugin"
-version = "0.1.0"
-edition = "2021"
+[plugin]
+id = "hollow_knight"
+name = "Hollow Knight"
+short_name = "HK"
+version = "1.0.0"
+author = "Community"
+description = "Hollow Knight boss tracker"
 
-[lib]
-crate-type = ["cdylib"]
+# No autosplitter - manual splits only
 
-[dependencies]
-hitcounter-sdk = { path = "../hitcounter-sdk" }
+[[bosses]]
+id = "false_knight"
+name = "False Knight"
+location = "Forgotten Crossroads"
+required = true
+order = 1
+
+[[bosses]]
+id = "hornet_1"
+name = "Hornet (Greenpath)"
+location = "Greenpath"
+required = true
+order = 2
+
+[[bosses]]
+id = "soul_master"
+name = "Soul Master"
+location = "City of Tears"
+required = false
+order = 3
+
+[[presets]]
+id = "main-bosses"
+name = "Main Bosses"
+description = "Required story bosses"
+boss_ids = ["false_knight", "hornet_1"]
+
+[[presets]]
+id = "all-bosses"
+name = "All Bosses"
+boss_ids = ["false_knight", "hornet_1", "soul_master"]
 ```
 
-### Build Command
+## Rust SDK Types (for advanced users)
 
-```bash
-cargo build --release
+If building Rust plugins:
+
+```rust
+use hitcounter_sdk::{
+    Boss, PatternConfig, MemoryContext,
+    FlagReader, PluginError
+};
+
+// Boss definition
+pub struct Boss {
+    pub id: String,
+    pub name: String,
+    pub flag_id: Option<u32>,
+    pub required: bool,
+    pub is_dlc: bool,
+}
+
+// Pattern configuration
+pub struct PatternConfig {
+    pub name: String,
+    pub pattern: String,
+    pub rip_offset: u32,
+    pub instruction_len: u32,
+    pub fallback_patterns: Vec<FallbackPattern>,
+}
+
+// Flag reader trait
+pub trait FlagReader: Send + Sync {
+    fn algorithm_name(&self) -> &'static str;
+    fn is_flag_set(&self, ctx: &MemoryContext, flag_id: u32) -> bool;
+    fn get_defeated_flags(&self, ctx: &MemoryContext, flag_ids: &[u32]) -> Vec<u32>;
+}
 ```
-
-The output `.dll` will be in `target/release/`.
 
 ## Support
 

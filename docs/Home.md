@@ -1,6 +1,6 @@
-# VNoHitTracker Documentation
+# NYA Core Documentation
 
-Welcome to the VNoHitTracker documentation! This covers how to use the application, create game plugins, and extend its functionality.
+Welcome to the NYA Core documentation! This covers how to use the application, create game plugins, and extend its functionality.
 
 ## Quick Links
 
@@ -11,9 +11,9 @@ Welcome to the VNoHitTracker documentation! This covers how to use the applicati
 - [Language SDK](LANGUAGE_SDK.md) - Create custom translations
 - [Plugin SDK](PLUGIN_SDK.md) - Detailed plugin development guide
 
-## What is VNoHitTracker?
+## What is NYA Core?
 
-VNoHitTracker is a no-hit run tracker for FromSoftware Souls games and similar titles. It features:
+NYA Core is a no-hit run tracker for FromSoftware Souls games and similar titles. It features:
 
 - **Hit Counting** - Track hits taken during your run
 - **Boss Tracking** - Automatic split advancement when bosses are defeated
@@ -21,6 +21,7 @@ VNoHitTracker is a no-hit run tracker for FromSoftware Souls games and similar t
 - **Multi-Run Support** - Track multiple games in a single session
 - **Personal Bests** - Compare against your best runs
 - **Autosplitter** - Automatic boss detection via memory reading
+- **Low-Level Hotkeys** - Works in fullscreen games
 
 ## Supported Games
 
@@ -48,12 +49,17 @@ names = ["YourGame.exe"]
 
 [autosplitter]
 enabled = true
-algorithm = "ds3"  # Use existing algorithm
+algorithm = "category_decomposition"
 
 [[bosses]]
 id = "first_boss"
 name = "First Boss"
 flag_id = 12345678
+
+[[presets]]
+id = "all-bosses"
+name = "All Bosses"
+boss_ids = ["first_boss", "second_boss"]
 ```
 
 See [Creating Plugins](Creating-Plugins.md) for full documentation.
