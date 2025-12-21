@@ -5,11 +5,11 @@
   "platforms": {
     "windows-x86_64": {
       "signature": "",
-      "url": "https://github.com/valkyaha/HitCounter-Release/raw/master/v2.0.1/NYA%20Core_2.0.1_x64-setup.exe"
+      "url": "https://github.com/valkyaha/HitTracker-Release/releases/download/v2.0.1/NYA.Core_2.0.1_x64-setup.exe"
     },
     "linux-x86_64": {
       "signature": "",
-      "url": "https://github.com/valkyaha/HitCounter-Release/raw/master/v2.0.1/NYA_Core_2.0.1_amd64.AppImage"
+      "url": "https://github.com/valkyaha/HitTracker-Release/releases/download/v2.0.1/NYA_Core_2.0.1_amd64.AppImage"
     }
   }
 }
