@@ -72,13 +72,13 @@ Download the latest version from [**Releases**](https://github.com/valkyaha/HitT
 
 ## Documentation
 
-- [Home](docs/Home.md) - Overview and quick links
-- [Creating Plugins](docs/Creating-Plugins.md) - Add support for new games
-- [Autosplitter Guide](docs/Autosplitter-Guide.md) - How the autosplitter works
-- [SDK Reference](docs/SDK-Reference.md) - Complete API documentation
-- [Flag Algorithms](docs/Flag-Algorithms.md) - Memory reading algorithms
-- [Language SDK](docs/LANGUAGE_SDK.md) - Create translations
-- [Plugin SDK](docs/PLUGIN_SDK.md) - Plugin development guide
+- [Home](docs/wiki/Home.md) - Overview and quick links
+- [Creating Plugins](docs/wiki/Creating-Plugins.md) - Add support for new games
+- [Autosplitter Guide](docs/wiki/Autosplitter-Guide.md) - How the autosplitter works
+- [SDK Reference](docs/wiki/SDK-Reference.md) - Complete API documentation
+- [Flag Algorithms](docs/wiki/Flag-Algorithms.md) - Memory reading algorithms
+- [Language SDK](docs/wiki/LANGUAGE_SDK.md) - Create translations
+- [Plugin SDK](docs/wiki/PLUGIN_SDK.md) - Plugin development guide
 
 ## System Requirements
 
