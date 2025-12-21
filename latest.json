@@ -1,0 +1,15 @@
+{
+  "version": "2.0.1",
+  "notes": "NYA Core v2.0.1 - First Official Release\n\n- Complete UI redesign with improved OBS customization\n- Low-level keyboard hooks for games that bypass OS shortcuts\n- Full internationalization with Spanish translation\n- In-app modal dialogs\n- Fixed autosplitter overwriting custom split names\n- Reduced OBS polling by 94%\n- 60fps timer with millisecond precision",
+  "pub_date": "2025-12-21T12:00:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "",
+      "url": "https://github.com/valkyaha/HitCounter-Release/raw/master/v2.0.1/NYA%20Core_2.0.1_x64-setup.exe"
+    },
+    "linux-x86_64": {
+      "signature": "",
+      "url": "https://github.com/valkyaha/HitCounter-Release/raw/master/v2.0.1/NYA_Core_2.0.1_amd64.AppImage"
+    }
+  }
+}
