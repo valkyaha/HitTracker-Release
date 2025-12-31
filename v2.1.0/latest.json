@@ -1,0 +1,11 @@
+{
+  "version": "2.1.0",
+  "notes": "Practice Mode & Save Management\n\n- Toggle practice mode to disable all statistics tracking during practice runs\n- Backup and restore game saves per split for practice sessions\n- Visual indicator shows when practice mode is active\n- Plugin-defined default save locations for popular games\n- Discord link added to About page\n- Languages now auto-download on first launch and refresh immediately\n- Config files now persist across updates (stored in AppData)",
+  "pub_date": "2025-12-23T20:30:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSaEtzM3ptK0pvVWRwemhndFlUQnhwcndscEZnMGVOMjQ2V3ZuUnhoanBZUUZPQlEzM2VqNithWEJSWHpmK3BnWFlscWxXM0h3NjQ5M2phOXVRckFKbWdkd0d0OWNQN0FZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY2NTEzMDM5CWZpbGU6TllBIENvcmVfMi4xLjBfeDY0LXNldHVwLmV4ZQpTVFkxNmVtNExCVWlVdDZHSExyVlRPS3FTOWxrQU56a1pxcndOWThtK3NSQnlTQjRFbWpkeUtTd3Q0V1RFK0Fjc3ZUa3h4U0ZUOEp0dWZEK2h6M1JEUT09Cg==",
+      "url": "https://github.com/valkyaha/HitTracker-Release/releases/download/v2.1.0/NYA.Core_2.1.0_x64-setup.exe"
+    }
+  }
+}

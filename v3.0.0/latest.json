@@ -1,0 +1,11 @@
+{
+  "version": "3.0.0",
+  "notes": "## Major Release - NYA Core 3.0\n\n### New Features\n- Flexible run types with custom autosplit triggers (AND/OR logic)\n- Kill count tracking for bonfire ascetic runs (DS2)\n- Target time goals per split\n- Twitch stream metadata auto-update when loading presets\n- Missing plugin detection with download prompts\n- Vision-based autosplitter for console games\n- Testers section in About page\n\n### Improvements\n- Complete i18n coverage (200+ new translation keys)\n- Config-driven autosplitter pattern loading from plugins\n- Externalized memory patterns to plugin files\n- Comprehensive rest points and known_flags for all games\n\n### Bug Fixes\n- Fix preset name not restoring on app restart\n- Fix autosplitter not restarting when switching games\n- Fix visual bugs in counter tab\n- Fix OBS overlay CSS component switching\n- Add serde defaults for TwitchConfig backwards compatibility",
+  "pub_date": "2025-12-31T22:30:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSaEtzM3ptK0pvVVRLa29WNWdnSjExdnJmaTR0MHhJMC9KZWw0UUJLMDdycWowd0JUYkpLVXB2d0R6enByWG1FdDRSTVBVZFltY0V1V3NoeDdpMnkrYkpublVMZ3RZK0FjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MjIwMDkwCWZpbGU6TllBIENvcmVfMy4wLjBfeDY0LXNldHVwLmV4ZQprR1lPaCtwYzNhNGluQmZ3MndxYXVtWis0eFF4bkVjZnFwMmY2WituRUNzNktRclh0Y2xXMit3NTlMMGtJUVlTSlQrNndzUXZ6cUpyNnkxeGo1ejJEUT09Cg==",
+      "url": "https://github.com/valkyaha/HitTracker-Release/releases/download/v3.0.0/NYA%20Core_3.0.0_x64-setup.exe"
+    }
+  }
+}
