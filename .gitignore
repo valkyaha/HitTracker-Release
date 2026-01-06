@@ -1,3 +1,4 @@
 # Only ignore temporary/build files
 *.tmp
 *.log
+wiki/
