@@ -4,6 +4,7 @@ A professional no-hit run tracker for Souls-like games with OBS integration, aut
 
 [![Latest Release](https://img.shields.io/github/v/release/valkyaha/HitTracker-Release)](https://github.com/valkyaha/HitTracker-Release/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/valkyaha/HitTracker-Release/total)](https://github.com/valkyaha/HitTracker-Release/releases)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Development-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/darkittyvt)
 
 ## Downloads
 
@@ -18,10 +19,14 @@ Download the latest version from [**Releases**](https://github.com/valkyaha/HitT
 ## Features
 
 - **Hit Tracking** - Track hits across boss fights with undo support
+- **Split Timer** - Full timer with pause/resume and PB comparison
 - **Autosplitter** - Automatic boss detection via memory reading
+- **Vision Autosplitter** - Screen capture detection for console games
 - **Multi-Run Mode** - Track multiple games in sequence (Trilogy, God Runs)
 - **OBS Integration** - Customizable overlays via browser source
+- **Twitch Integration** - Chat commands, channel points, and auto-clips
 - **Personal Bests** - Statistics tracking and run comparisons
+- **Practice Mode** - Train specific splits with save state sync
 - **Low-Level Hotkeys** - Works even in fullscreen games
 - **Plugin System** - Add support for new games via TOML plugins
 - **Internationalization** - Full i18n with community translations
@@ -65,30 +70,42 @@ Download the latest version from [**Releases**](https://github.com/valkyaha/HitT
 
 ## OBS Integration
 
-1. Go to **Settings > OBS Integration**
+1. Go to **OBS Integration** in the sidebar
 2. Click **Start Server** (default port: 9876)
-3. In OBS, add a **Browser Source** with URL: `http://localhost:9876`
-4. Customize appearance in the OBS Preview tab
+3. In OBS, add a **Browser Source** with the overlay URL
+4. Customize appearance in the Live Preview tab
+
+### Available Overlays
+
+| Overlay | Description |
+|---------|-------------|
+| Hit Counter | Main counter display with timer |
+| Splits List | Boss checklist with progress |
+| Progress Bar | Visual progress indicator |
+| Game Tabs | Multi-run game selector |
 
 ## Documentation
 
-- [Home](docs/wiki/Home.md) - Overview and quick links
-- [Creating Plugins](docs/wiki/Creating-Plugins.md) - Add support for new games
-- [Autosplitter Guide](docs/wiki/Autosplitter-Guide.md) - How the autosplitter works
-- [SDK Reference](docs/wiki/SDK-Reference.md) - Complete API documentation
-- [Flag Algorithms](docs/wiki/Flag-Algorithms.md) - Memory reading algorithms
-- [Language SDK](docs/wiki/LANGUAGE_SDK.md) - Create translations
-- [Plugin SDK](docs/wiki/PLUGIN_SDK.md) - Plugin development guide
+Full documentation available in the [Wiki](https://github.com/valkyaha/HitTracker-Release/wiki):
+
+- [Installation](wiki/Installation.md) - Setup guide
+- [Features](wiki/Features.md) - Complete feature overview
+- [OBS Integration](wiki/OBS-Integration.md) - Overlay setup and customization
+- [Twitch Integration](wiki/Twitch-Integration.md) - Chat commands and channel points
+- [Autosplitter](wiki/Autosplitter.md) - Memory-based boss detection
+- [Plugin SDK](wiki/Plugin-SDK.md) - Create plugins for new games
+- [Language SDK](wiki/Language-SDK.md) - Create translations
+- [CSS Customization](wiki/CSS-Customization.md) - Advanced overlay styling
 
 ## System Requirements
 
 - Windows 10/11 (64-bit)
-- Linux (AppImage) - limited autosplitter support
+- Linux (AppImage) - limited autosplitter support via Proton
 - ~50MB disk space
 
 ## Antivirus Notes
 
-The executable uses low-level keyboard hooks and memory reading which may trigger antivirus false positives. You may need to add an exception.
+The autosplitter uses memory reading APIs which may trigger antivirus false positives. This is common with speedrun tools like LiveSplit and SoulSplitter. You may need to add an exception for NYA Core.
 
 ## License
 
@@ -99,6 +116,19 @@ The executable uses low-level keyboard hooks and memory reading which may trigge
 
 - **[FrankvdStam](https://github.com/FrankvdStam)** - Creator of [SoulSplitter](https://github.com/FrankvdStam/SoulSplitter), whose comprehensive boss/bonfire/flag data made the autosplitter functionality possible
 
-## Contributing
+## Contact & Support
 
-Contributions welcome! Please submit issues and pull requests to the main repository.
+| | |
+|---|---|
+| **Discord** | [darkittyvt](https://discord.com/users/darkittyvt) |
+| **Email** | darkvalhalla@proton.me |
+| **Ko-fi** | [Support Development](https://ko-fi.com/darkittyvt) |
+| **Issues** | [GitHub Issues](https://github.com/valkyaha/HitTracker-Release/issues) |
+
+---
+
+<p align="center">
+  <a href="https://ko-fi.com/darkittyvt">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support on Ko-fi">
+  </a>
+</p>
