@@ -34,15 +34,17 @@ Download the latest version from [**Releases**](https://github.com/valkyaha/HitT
 ## Supported Games
 
 | Game | Autosplitter | Algorithm |
-|------|-------------|-----------|
-| Dark Souls Remastered | Yes | offset_table |
-| Dark Souls II: SOTFS | Yes | kill_counter |
-| Dark Souls III | Yes | category_decomposition |
-| Sekiro: Shadows Die Twice | Yes | category_decomposition |
-| Elden Ring | Yes | binary_tree |
-| Armored Core 6 | Yes | binary_tree |
+|------|:------------:|-----------|
+| Dark Souls Remastered | ✓ | offset_table |
+| Dark Souls II: SOTFS | ✓ | kill_counter |
+| Dark Souls III | ✓ | category_decomposition |
+| Sekiro: Shadows Die Twice | ✓ | category_decomposition |
+| Elden Ring | ✓ | binary_tree |
+| Armored Core 6 | ✓ | binary_tree |
 | Bloodborne | Manual | - |
 | Demon's Souls | Manual | - |
+
+*More games available via [community plugins](https://github.com/valkyaha/NYA-Core-Assets)*
 
 ## Quick Start
 
