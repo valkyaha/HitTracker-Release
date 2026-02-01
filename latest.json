@@ -1,11 +1,11 @@
 {
-  "version": "3.1.0-1",
-  "notes": "## NYA Core 3.1.0 - Test Build\n\n### New Features\n- Plugin SDK for custom UI components\n- Modular game plugin structure\n- Practice mode save state sync\n- Splits overlay scaling in preview\n\n### Improvements\n- Updated preset row button layout\n- Custom game delete button styling\n- Plugin details loading for custom games\n- Splits fill width when resizing horizontally\n\n### Bug Fixes\n- Fix playtime tracking not updating\n- Fix preset modal not closing when clicking outside",
-  "pub_date": "2026-01-06T14:50:00Z",
+  "version": "3.1.0",
+  "notes": "## NYA Core 3.1.0\n\n### New Features\n- Controller overlay for OBS integration (Xbox, PS4, GameCube, Fight Stick)\n- Plugin SDK for custom UI components\n- Modular game plugin structure\n- Autosplitter ASL files for all supported games\n- Twitch raid feature with favorites support\n- Practice mode save state sync\n- Splits overlay scaling in preview\n- Save Organizer with custom folder hierarchy\n\n### Improvements\n- Updated preset row button layout\n- Custom game delete button styling\n- Plugin details loading for custom games\n- Splits fill width when resizing horizontally\n- Tutorial, language detection, split editing improvements\n\n### Bug Fixes\n- Fix duplicate multirun preset creation on download\n- Fix playtime tracking not updating\n- Fix preset modal not closing when clicking outside\n- Fix language auto-detection overriding manual selection",
+  "pub_date": "2026-02-01T14:45:00Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSaEtzM3ptK0pvVWM0cy8yODZYMGdNWlFjM1YydmpJY1IvUE45RkN1OEpTcnlKcUJaMTQyVDdwOHNZeVMva2dkUDUzZFI2WEJxV0FKM09aMy83UHRyYURHUzBmUzk0RndnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3NzA3NDI4CWZpbGU6TllBIENvcmVfMy4xLjAtMV94NjQtc2V0dXAuZXhlCnhTN3NJUGJPSW9mTHRpUmtOVnRMTm95dFl3Z01oSzFRZW9lUmpNWWl1UXhKMVIxTlROb2d0UTBzdFRQNm94dktEQ1hIcER0bk5GRU84dU9ic3c4V0F3PT0K",
-      "url": "https://github.com/valkyaha/HitTracker-Release/releases/download/v3.1.0/NYA_Core_3.1.0-1_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSaEtzM3ptK0pvVWR1ZlZrQkNwRUlPWno4UFBFWDdJM2VqV0dYNjY0d1phd2RqU0dVNXdEVGxrdDRhamlrV000d2Y1NklnY3ZwQXVjVWhNTXJuMGY2VFBIQ1F5MHZXSkFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5OTUzMjE3CWZpbGU6TllBIENvcmVfMy4xLjBfeDY0LXNldHVwLmV4ZQpFRG54cmFjUGpaempkWmtUejdGRnJmTHhNaE0vcmxwZzRvRVdTTkhOLytMUk9UOVY3aVJWY2tweTBIaE15ejJIQVhjekhkQVc1dEVCSVEveDRMTlRCQT09Cg==",
+      "url": "https://github.com/valkyaha/HitTracker-Release/releases/download/v3.1.0/NYA_Core_3.1.0_x64-setup.exe"
     }
   }
 }
